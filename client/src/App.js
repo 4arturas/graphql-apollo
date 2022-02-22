@@ -25,7 +25,7 @@ const App = () => {
                         </NavLink>
                     </div>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6} style={{margin: '20px'}}>
                     <Routes>
                         <Route exact path='/' element={<GiveConsent />} />
                         <Route path='/give-consent' element={<GiveConsent />} />
