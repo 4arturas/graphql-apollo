@@ -1,5 +1,8 @@
 # graphql-apollo 
 
+https://github.com/didomi/challenges/tree/master/frontend
+https://github.com/didomi/challenges/tree/master/backend
+
 #init client
 ````
 npx create-react-app client
