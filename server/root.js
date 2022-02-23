@@ -2,7 +2,22 @@ const users = [
     { id: 1, username: 'TestUser', age: 33 }
 ];
 
+const consents = [
+    { id: 1, name: 'TestUser', email: 'test@test.com' }
+];
+
 const root = {
+    giveConsent: ({input}) =>
+    {
+        const id = Date.now();
+        const consent =
+            {
+                id, ...input
+            };
+        consents.push( consent );
+        return 1;
+    },
+
     getAllUsers: () =>
     {
         return users;

@@ -1,6 +1,18 @@
 const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
+    type Consent
+    {
+        id: ID
+        name: String
+        email: String
+    } 
+    input ConsentInput
+    {
+        name: String
+        email: String
+    } 
+    
     type User
     {
         id: ID
@@ -36,6 +48,7 @@ const schema = buildSchema(`
     
     type Mutation 
     {
+        giveConsent(input: ConsentInput): Int
         createUser(input: UserInput): User
         testMutation(input: UserInput): Int
     }

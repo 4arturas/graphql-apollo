@@ -7,3 +7,11 @@ export const CREATE_USER = gql`
         }
     }
 `
+
+export const GIVE_CONSENT = gql`
+    mutation giveConsent($input: ConsentInput) {
+        giveConsent(input: $input) {
+            name, email
+        }
+    }
+`
