@@ -3,6 +3,9 @@ const { graphqlHTTP }   = require('express-graphql');
 const cors              = require('cors');
 const schema            = require('./schema');
 const root              = require('./root')
+const { faker } = require('@faker-js/faker');
+const randomName = faker.name.findName();
+console.log( randomName );
 
 const app               = express();
 app.use( cors() );
