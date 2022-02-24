@@ -3,6 +3,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {GIVE_CONSENT} from "../../mutation/user";
+import {Alert, CircularProgress} from "@mui/material";
 
 function GiveConsent() {
 
@@ -15,6 +16,9 @@ function GiveConsent() {
 
     const [giveConsent]                 = useMutation(GIVE_CONSENT);
 
+    const [success, setSuccess]         = useState( false );
+    const [error, setError]             = useState( null );
+
     const handleChange = (event) => {
         const fData = createFormData( formData.name, formData.email );
         fData[event.target.name] = event.target.value;
@@ -22,7 +26,9 @@ function GiveConsent() {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
+        setSubmitted( true );
+        setError( null );
         giveConsent({
             variables: {
                 input: {
@@ -30,13 +36,15 @@ function GiveConsent() {
                 }
             }
         }).then(({data}) => {
+            setSuccess( true );
+            setTimeout( () => setSuccess( false ), 5000 );
             console.log(data)
             setFormData( createFormData( '', '') );
+            setSubmitted( false );
         }).catch( (e) => {
-            console.log( e );
+            setError( e.message );
+            setSubmitted( false );
         })
-        setSubmitted( true );
-        setTimeout( ()=> setSubmitted( false ), 5000 );
     }
 
     return (
@@ -61,17 +69,19 @@ function GiveConsent() {
                 // errorMessages={['this field is required', 'email is not valid']}
             />
             <br />
-            <Button
+            { !submitted && <Button
                 color="primary"
                 variant="contained"
                 type="submit"
                 disabled={submitted}
             >
-                {
-                    (submitted && 'Your form is submitted!')
-                    || (!submitted && 'Submit')
-                }
-            </Button>
+                Submit
+            </Button> }
+            { submitted && <CircularProgress /> }
+            <br/>
+            <br/>
+            { success && <Alert severity="success">Your consent was submitted - thanks!</Alert> }
+            { ( error !== null ) && <Alert severity="error">{error}</Alert> }
         </ValidatorForm>
     );
 }
