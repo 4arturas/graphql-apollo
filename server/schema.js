@@ -48,7 +48,7 @@ const schema = buildSchema(`
     
     type Mutation 
     {
-        giveConsent(input: ConsentInput): Int
+        giveConsent(input: ConsentInput): Consent
         createUser(input: UserInput): User
         testMutation(input: UserInput): Int
     }
