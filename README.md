@@ -3,7 +3,7 @@
 https://github.com/didomi/challenges/tree/master/frontend
 https://github.com/didomi/challenges/tree/master/backend
 
-#init client
+# init client
 ````
 npx create-react-app client
 cd client
@@ -15,13 +15,10 @@ npm start
 
 # init server
 ````
+mkdir server
 cd server
 npm init -y
-npm i express
-npm i express-graphql
-npm i graphql
-npm i cors
-npm i nodemon
+npm i express express-graphql graphql cors nodemon
 ````
 ````
 npm run dev
